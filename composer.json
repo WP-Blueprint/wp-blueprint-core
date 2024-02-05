@@ -1,0 +1,39 @@
+{
+  "name": "wp-blueprint/core",
+  "description": "WPBlueprint\\Core: Empower your WordPress themes and plugins with powerful OOP functionality for enhanced development efficiency.",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Yanis Deplazes",
+      "homepage": "https://github.com/YanisDeplazes"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPBlueprint\\Core\\": "src/"
+    }
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+    "wptrt/wpthemereview": "^0.2.1",
+    "php-parallel-lint/php-parallel-lint": "^1.2.0",
+    "wp-cli/i18n-command": "^2.2.5"
+  },
+  "scripts": {
+    "phpdoc": "phpDocumentor.phar -d src -t docs",
+    "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "lint:wpcs:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+    "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor ."
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "symfony/flex": true
+    }
+  }
+}

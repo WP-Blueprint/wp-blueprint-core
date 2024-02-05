@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+    branches: "*"
+  push:
+    branches: "*"
+
+jobs:
+  lint-php:
+    name: PHP and WPCS Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer Packages
+        run: composer install --no-progress
+
+      - name: Run PHP Lint
+        run: composer run-script lint:php
+
+      - name: Run WPCS Lint
+        run: composer run-script lint:wpcs
