@@ -1,6 +1,6 @@
 # WP Blueprint Core
 
-[![Downloads](https://img.shields.io/packagist/dt/wp-blueprint/wp-blueprint-core)](https://packagist.org/packages/wp-blueprint/wp-blueprint-core) [![CI](https://github.com/WP-Blueprint/wp-blueprint-core/actions/workflows/lint.yml/badge.svg)](https://github.com/WP-Blueprint/wp-blueprint-core/actions/workflows/lint.yml)
+[![Downloads](https://img.shields.io/packagist/dt/wp-blueprint/core)](https://packagist.org/packages/wp-blueprint/core) [![CI](https://github.com/WP-Blueprint/wp-blueprint-core/actions/workflows/lint.yml/badge.svg)](https://github.com/WP-Blueprint/wp-blueprint-core/actions/workflows/lint.yml)
 
 WPBlueprint\Core is a comprehensive PHP package designed to provide essential Object-Oriented Programming (OOP) functionality for WordPress themes and plugins. This package offers a wide range of reusable classes and utilities to streamline WordPress development, ensuring code modularity, extensibility, and maintainability. Whether you're building themes or plugins, WPBlueprint\Core simplifies common tasks, making it an indispensable tool for WordPress developers. Level up your WordPress projects with WPBlueprint\Core and unleash the power of OOP development.
 
