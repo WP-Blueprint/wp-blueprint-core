@@ -173,16 +173,16 @@ class MetaBox {
 	 * @param array    $args Additional arguments including 'id' and 'field_type'.
 	 */
 	public function render_post_meta_box( $post, $args ) {
-		$field_id    = $args['args']['id'];
+		$field_id    = $args['id'];
 		$field_value = get_post_meta( $post->ID, $field_id, true );
-		$field_type  = $args['args']['field_type'];
+		$field_type  = $args['field_type'] ?? 'text';
 
 		// Add the nonce field to the form.
 		wp_nonce_field( 'custom_post_meta_nonce_action', 'custom_post_meta_nonce' );
 
 		switch ( $field_type ) {
 			case 'text':
-				echo '<input type="text" id="' . esc_attr( $this->id ) . '" name="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '">';
+				echo '<input type="text" id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_id ) . '" value="' . esc_attr( $field_value ) . '">';
 				break;
 			case 'textarea':
 				echo '<textarea id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_id ) . '">' . esc_textarea( $field_value ) . '</textarea>';
