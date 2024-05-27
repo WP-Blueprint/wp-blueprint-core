@@ -25,6 +25,6 @@ use WPBlueprint\Core\Registry;
  * @see \WPBlueprint\Core\Modules\BlockPatternCategory for the BlockPatternCategory class.
  * @since 1.0.0
  */
-abstract class BlockPatternCategories extends Registry {
+abstract class BlockPatternCategories implements RegistryInterface {
 	use RegistryTrait;
 }
