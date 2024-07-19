@@ -41,7 +41,7 @@ jobs:
         run: composer run-script lint:php
 
       - name: Run WPCS Lint
-        run: composer run-script lint:wpc
+        run: composer run-script lint:wpcs
 
   generate-docs:
     name: Generate and Deploy Documentation
