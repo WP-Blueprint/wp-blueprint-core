@@ -42,8 +42,7 @@ jobs:
 
       - name: Run WPCS Lint
         run: composer run-script lint:wpcs
-
-  generate-docs:
+  generate-and-deploy-docs:
     name: Generate and Deploy Documentation
     runs-on: ubuntu-latest
     needs: lint-php
@@ -62,11 +61,14 @@ jobs:
           curl -L -o phpDocumentor.phar https://github.com/phpDocumentor/phpDocumentor/releases/latest/download/phpDocumentor.phar
 
       - name: Generate Documentation
-        run: php phpDocumentor.phar -d src -t docs
+        run: php phpDocumentor.phar -d src -t docs/api
 
-      - name: Deploy Documentation to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: gh-pages # Ensure this is configured in GitHub Pages settings
+      - name: Commit and Push Documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add docs/api
+          git commit -m "Update API documentation" || echo "No changes to commit"
+          git push origin main
