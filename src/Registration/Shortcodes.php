@@ -54,7 +54,7 @@ abstract class Shortcodes {
 	 *                          that includes a 'tag' for the shortcode and a 'callback' for the function
 	 *                          that generates the shortcode's output.
 	 */
-	public static function set( array $shortcodes = [] ): void {
+	public static function set( array $shortcodes = array() ): void {
 		foreach ( $shortcodes as $shortcode ) {
 			$tag      = isset( $shortcode['tag'] ) ? $shortcode['tag'] : ( $shortcode[0] ?? null );
 			$callback = isset( $shortcode['callback'] ) ? $shortcode['callback'] : ( $shortcode[1] ?? null );

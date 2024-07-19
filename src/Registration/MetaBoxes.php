@@ -60,7 +60,7 @@ abstract class MetaBoxes {
 	 *                          that includes 'id', 'title', 'callback', 'screen', 'context', 'priority',
 	 *                          and optionally 'callback_args'.
 	 */
-	public static function set( array $meta_boxes = [] ): void {
+	public static function set( array $meta_boxes = array() ): void {
 		foreach ( $meta_boxes as $meta_box ) {
 			$id            = isset( $meta_box['id'] ) ? $meta_box['id'] : ( $meta_box[0] ?? null );
 			$title         = isset( $meta_box['title'] ) ? $meta_box['title'] : ( $meta_box[1] ?? null );

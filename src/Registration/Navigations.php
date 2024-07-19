@@ -51,7 +51,7 @@ abstract class Navigations {
 	 *                           The array keys represent the menu location identifiers, while the values
 	 *                           are the descriptions for these locations.
 	 */
-	public static function set( array $navigations = [] ): void {
+	public static function set( array $navigations = array() ): void {
 		foreach ( $navigations as $location => $description ) {
 			new Navigation( $location, $description );
 		}

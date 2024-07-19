@@ -59,10 +59,10 @@ abstract class BlockTypes {
 	 *                           for registering the block type (such as 'editor_script', 'editor_style',
 	 *                           'render_callback', etc.).
 	 */
-	public static function set( array $block_types = [] ): void {
+	public static function set( array $block_types = array() ): void {
 		foreach ( $block_types as $block_type ) {
 			$name = isset( $block_type['name'] ) ? $block_type['name'] : ( $block_type[0] ?? null );
-			$args = isset( $block_type['args'] ) ? $block_type['args'] : ( $block_type[1] ?? [] );
+			$args = isset( $block_type['args'] ) ? $block_type['args'] : ( $block_type[1] ?? array() );
 			new BlockType( $name, $args );
 		}
 	}

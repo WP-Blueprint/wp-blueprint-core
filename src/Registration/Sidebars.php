@@ -57,7 +57,7 @@ abstract class Sidebars {
 	 *                        that includes the sidebar's properties, such as 'id', 'name', 'description',
 	 *                        'before_widget', 'after_widget', 'before_title', and 'after_title'.
 	 */
-	public static function set( array $sidebars = [] ): void {
+	public static function set( array $sidebars = array() ): void {
 		foreach ( $sidebars as $sidebar ) {
 			new Sidebar( $sidebar );
 		}

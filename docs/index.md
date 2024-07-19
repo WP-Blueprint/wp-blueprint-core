@@ -1,6 +1,5 @@
-# Welcome to WP Blueprint Core Documentation
+# Welcome to the WP Blueprint Core Documentation
 
 For installation instructions, please see the [Installation Guide](installation).
 
-For code docs, please see the
-[PHP Documentation](api).
+For code documentations, please see the [PHP Documentation](api).

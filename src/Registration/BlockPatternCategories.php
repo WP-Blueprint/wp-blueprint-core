@@ -58,18 +58,18 @@ abstract class BlockPatternCategories {
 	 *                                        'category_name' and may include 'category_properties' which
 	 *                                        is an array of properties for the category (e.g., label).
 	 */
-	public static function set( array $block_pattern_categories = [] ): void {
+	public static function set( array $block_pattern_categories = array() ): void {
 		foreach ( $block_pattern_categories as $block_pattern_category ) {
 			// Check if using associative array or indexed array.
 			if ( isset( $block_pattern_category['category_name'] ) ) {
 				// Associative array detected.
 				$category_name       = $block_pattern_category['category_name'];
-				$category_properties = $block_pattern_category['category_properties'] ?? [];
+				$category_properties = $block_pattern_category['category_properties'] ?? array();
 			} else {
 				// Assuming indexed array with a specific order.
 				// 0 => category_name, 1 => category_properties.
 				$category_name       = $block_pattern_category[0] ?? null;
-				$category_properties = $block_pattern_category[1] ?? [];
+				$category_properties = $block_pattern_category[1] ?? array();
 			}
 
 			new BlockPatternCategory( $category_name, $category_properties );

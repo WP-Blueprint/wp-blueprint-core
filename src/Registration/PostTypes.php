@@ -58,10 +58,10 @@ abstract class PostTypes {
 	 *                          that includes a 'key' for the post type identifier and 'args' for an array of
 	 *                          arguments used to register the post type.
 	 */
-	public static function set( array $post_types = [] ): void {
+	public static function set( array $post_types = array() ): void {
 		foreach ( $post_types as $post_type ) {
 			$key  = isset( $post_type['key'] ) ? $post_type['key'] : ( $post_type[0] ?? null );
-			$args = isset( $post_type['args'] ) ? $post_type['args'] : ( $post_type[1] ?? [] );
+			$args = isset( $post_type['args'] ) ? $post_type['args'] : ( $post_type[1] ?? array() );
 			new PostType( $key, $args );
 		}
 	}

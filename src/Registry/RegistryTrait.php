@@ -21,7 +21,7 @@ trait RegistryTrait {
 	 *
 	 * @var array
 	 */
-	protected static $components = [];
+	protected static $components = array();
 
 	/**
 	 * Adds a component to the registry and returns its unique hash ID.

@@ -68,14 +68,14 @@ abstract class Assets {
 	 *                      includes 'handle', 'src', 'deps', 'version', and optionally 'media' for styles,
 	 *                      and 'in_footer' for scripts, among others.
 	 */
-	public static function set( array $assets = [] ): void {
+	public static function set( array $assets = array() ): void {
 		foreach ( $assets as $asset ) {
 			// Check if using associative array or indexed array.
 			if ( isset( $asset['handle'] ) && isset( $asset['src'] ) ) {
 				// Associative array detected.
 				$handle        = $asset['handle'];
 				$src           = $asset['src'];
-				$deps          = $asset['deps'] ?? [];
+				$deps          = $asset['deps'] ?? array();
 				$ver           = $asset['version'] ?? false;
 				$register_only = $asset['register_only'] ?? false;
 				$media         = $asset['media'] ?? 'all'; // Default for styles.
@@ -85,7 +85,7 @@ abstract class Assets {
 				// 0 => handle, 1 => src, 2 => deps, 3 => version, 4 => media/in_footer, 5 => register_only.
 				$handle = $asset[0] ?? null;
 				$src    = $asset[1] ?? null;
-				$deps   = $asset[2] ?? [];
+				$deps   = $asset[2] ?? array();
 				$ver    = $asset[3] ?? false;
 				// Use a conditional based on the asset type to determine if the next index is 'media' or 'in_footer'.
 				$media_or_in_footer = $asset[4] ?? null;

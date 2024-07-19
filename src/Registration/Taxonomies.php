@@ -63,11 +63,11 @@ abstract class Taxonomies {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function set( array $taxonomies = [] ): void {
+	public static function set( array $taxonomies = array() ): void {
 		foreach ( $taxonomies as $taxonomy ) {
 			$key         = isset( $taxonomy['taxonomy'] ) ? $taxonomy['taxonomy'] : ( $taxonomy[0] ?? null );
 			$object_type = isset( $taxonomy['object_type'] ) ? $taxonomy['object_type'] : ( $taxonomy[1] ?? null );
-			$args        = isset( $taxonomy['args'] ) ? $taxonomy['args'] : ( $taxonomy[2] ?? [] );
+			$args        = isset( $taxonomy['args'] ) ? $taxonomy['args'] : ( $taxonomy[2] ?? array() );
 			new Taxonomy( $key, $object_type, $args );
 		}
 	}

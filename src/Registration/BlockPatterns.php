@@ -59,10 +59,10 @@ abstract class BlockPatterns {
 	 *                              that includes 'name' and 'properties', where 'properties' is an array that
 	 *                              can include 'title', 'content', 'categories', 'keywords', and other block pattern attributes.
 	 */
-	public static function set( array $block_patterns = [] ): void {
+	public static function set( array $block_patterns = array() ): void {
 		foreach ( $block_patterns as $block_pattern ) {
 			$pattern_name       = isset( $block_pattern['name'] ) ? $block_pattern['name'] : ( $block_pattern[0] ?? null );
-			$pattern_properties = isset( $block_pattern['properties'] ) ? $block_pattern['properties'] : ( $block_pattern[1] ?? [] );
+			$pattern_properties = isset( $block_pattern['properties'] ) ? $block_pattern['properties'] : ( $block_pattern[1] ?? array() );
 			new BlockPattern( $pattern_name, $pattern_properties );
 		}
 	}

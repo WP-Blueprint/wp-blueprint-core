@@ -132,13 +132,13 @@ class MetaBox {
 	public function __construct( string $id, string $title, $callback = null, $screen = null, string $context = 'advanced', string $priority = 'default', $callback_args = null, ActionHook $action_hook_add = null, ActionHook $action_hook_save = null ) {
 		$this->id               = $id;
 		$this->title            = $title;
-		$this->callback         = $callback ?? [ $this, 'render_post_meta_box' ];
+		$this->callback         = $callback ?? array( $this, 'render_post_meta_box' );
 		$this->screen           = $screen;
 		$this->context          = $context;
 		$this->priority         = $priority;
 		$this->callback_args    = $callback_args;
-		$this->action_hook_add  = $action_hook_add ?? new ActionHook( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
-		$this->action_hook_save = $action_hook_save ?? new ActionHook( 'save_post', [ $this, 'update_post_meta' ] );
+		$this->action_hook_add  = $action_hook_add ?? new ActionHook( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
+		$this->action_hook_save = $action_hook_save ?? new ActionHook( 'save_post', array( $this, 'update_post_meta' ) );
 		$this->initialize();
 	}
 

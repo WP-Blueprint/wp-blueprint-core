@@ -21,7 +21,7 @@ interface RegistryInterface {
 	 * @param mixed $module The item to be added to the registry. This could be an instance of a class, an array of settings, or any type that represents a module or component.
 	 * @return mixed A unique identifier for the added item, which can be used for retrieval or removal.
 	 */
-	public static function add( $module);
+	public static function add( $module );
 
 	/**
 	 * Retrieves an item from the registry by its unique identifier.
@@ -29,14 +29,14 @@ interface RegistryInterface {
 	 * @param string $key The unique identifier of the item to retrieve.
 	 * @return mixed The item associated with the provided identifier if found; null otherwise.
 	 */
-	public static function get( $key);
+	public static function get( $key );
 
 	/**
 	 * Removes an item from the registry.
 	 *
 	 * @param string $key The unique identifier of the item to be removed.
 	 */
-	public static function remove( $key);
+	public static function remove( $key );
 
 	/**
 	 * Returns all items currently stored in the registry.
