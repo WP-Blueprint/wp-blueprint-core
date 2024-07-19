@@ -4,6 +4,8 @@
 
 WPBlueprint\Core is a comprehensive PHP package designed to provide essential Object-Oriented Programming (OOP) functionality for WordPress themes and plugins. This package offers a wide range of reusable classes and utilities to streamline WordPress development, ensuring code modularity, extensibility, and maintainability. Whether you're building themes or plugins, WPBlueprint\Core simplifies common tasks, making it an indispensable tool for WordPress developers. Level up your WordPress projects with WPBlueprint\Core and unleash the power of OOP development.
 
+[Documentation](https://wp-blueprint.github.io/wp-blueprint-core/)
+
 ## Key Features:
 
 - Encapsulated components for better code organization.
