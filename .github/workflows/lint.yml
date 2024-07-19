@@ -3,15 +3,18 @@ name: CI
 on:
   push:
     branches:
-      - main # Adjust branch name as necessary
+      - main
   pull_request:
     branches:
-      - main # Adjust branch name as necessary
+      - main
 
 jobs:
   lint-php:
     name: PHP and WPCS Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: none
 
     steps:
       - name: Checkout
@@ -41,11 +44,15 @@ jobs:
         run: composer run-script lint:php
 
       - name: Run WPCS Lint
-        run: composer run-script lint:wpcs
+        run: composer run-script lint:wpc
+
   generate-and-deploy-docs:
     name: Generate and Deploy Documentation
     runs-on: ubuntu-latest
     needs: lint-php
+    permissions:
+      contents: write
+      pages: write
 
     steps:
       - name: Checkout
@@ -63,12 +70,15 @@ jobs:
       - name: Generate Documentation
         run: php phpDocumentor.phar -d src -t docs/api
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
       - name: Commit and Push Documentation
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
           git add docs/api
           git commit -m "Update API documentation" || echo "No changes to commit"
           git push origin main
