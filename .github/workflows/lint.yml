@@ -1,10 +1,12 @@
 name: CI
 
 on:
-  pull_request:
-    branches: "*"
   push:
-    branches: "*"
+    branches:
+      - main # Adjust branch name as necessary
+  pull_request:
+    branches:
+      - main # Adjust branch name as necessary
 
 jobs:
   lint-php:
@@ -18,7 +20,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.3
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -39,12 +41,12 @@ jobs:
         run: composer run-script lint:php
 
       - name: Run WPCS Lint
-        run: composer run-script lint:wpcs
+        run: composer run-script lint:wpc
 
-  deploy-docs:
-    name: Deploy Documentation
+  generate-docs:
+    name: Generate and Deploy Documentation
     runs-on: ubuntu-latest
-    needs: [lint-php]
+    needs: lint-php
 
     steps:
       - name: Checkout
@@ -62,8 +64,9 @@ jobs:
       - name: Generate Documentation
         run: php phpDocumentor.phar -d src -t docs
 
-      - name: Upload Documentation to GitHub Pages
+      - name: Deploy Documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          publish_branch: gh-pages # Ensure this is configured in GitHub Pages settings

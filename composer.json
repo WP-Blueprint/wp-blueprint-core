@@ -25,7 +25,6 @@
     "wp-cli/i18n-command": "^2.2.5"
   },
   "scripts": {
-    "phpdoc": "phpDocumentor.phar -d src -t docs",
     "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
     "lint:wpcs:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
     "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor ."
