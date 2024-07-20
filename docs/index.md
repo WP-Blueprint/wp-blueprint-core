@@ -2,4 +2,4 @@
 
 For installation instructions, please see the [Installation Guide](installation).
 
-For code documentations, please see the [PHP Documentation](api).
+For code documentation, please see the [PHP Documentation](api).
