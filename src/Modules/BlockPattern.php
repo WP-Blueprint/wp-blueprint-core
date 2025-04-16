@@ -61,7 +61,7 @@ class BlockPattern {
 	 * @param array      $pattern_properties List of properties for the block pattern.
 	 * @param ActionHook $action_hook        Optional. ActionHook instance. Default 'init'.
 	 */
-	public function __construct( string $pattern_name, $pattern_properties, ActionHook $action_hook = null ) {
+	public function __construct( string $pattern_name, $pattern_properties, ?ActionHook $action_hook = null ) {
 		$this->pattern_name       = $pattern_name;
 		$this->pattern_properties = $pattern_properties;
 		$this->action_hook        = $action_hook ?? new ActionHook( 'init', array( $this, 'register_block_pattern' ) );

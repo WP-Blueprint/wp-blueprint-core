@@ -62,7 +62,7 @@ class BlockType {
 	 *                                  See register_block_type() for information on accepted arguments.
 	 * @param ActionHook   $action_hook Optional. ActionHook object for the register_block_type method. Default 'init'.
 	 */
-	public function __construct( string $block_type, $args, ActionHook $action_hook = null ) {
+	public function __construct( string $block_type, $args, ?ActionHook $action_hook = null ) {
 		$this->block_type  = $block_type;
 		$this->args        = $args;
 		$this->action_hook = $action_hook ?? new ActionHook( 'init', array( $this, 'register_block_type' ) );

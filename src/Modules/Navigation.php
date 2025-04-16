@@ -70,7 +70,7 @@ class Navigation {
 	 * @param ActionHook $action_hook  Optional. ActionHook instance. Default 'init'.
 	 * @param bool       $register_menu Optional. Whether to register the navigation menu. Default true.
 	 */
-	public function __construct( string $location, string $description, ActionHook $action_hook = null, bool $register_menu = true ) {
+	public function __construct( string $location, string $description, ?ActionHook $action_hook = null, bool $register_menu = true ) {
 		$this->location      = $location;
 		$this->description   = $description;
 		$this->action_hook   = $action_hook ?? new ActionHook( 'init', array( $this, 'register_nav_menu' ) );

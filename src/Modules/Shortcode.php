@@ -61,7 +61,7 @@ class Shortcode {
 	 * @param callable   $callback    Callback function to run when the shortcode is found.
 	 * @param ActionHook $action_hook Optional. ActionHook instance. Default 'init'.
 	 */
-	public function __construct( string $tag, $callback, ActionHook $action_hook = null ) {
+	public function __construct( string $tag, $callback, ?ActionHook $action_hook = null ) {
 		$this->tag         = $tag;
 		$this->callback    = $callback;
 		$this->action_hook = $action_hook ?? new ActionHook( 'init', array( $this, 'add_shortcode' ) );

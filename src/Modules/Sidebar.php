@@ -49,7 +49,7 @@ class Sidebar {
 	 * @param array      $args        Array of arguments for registering a sidebar.
 	 * @param ActionHook $action_hook Optional. ActionHook instance. Default 'widgets_init'.
 	 */
-	public function __construct( $args, ActionHook $action_hook = null ) {
+	public function __construct( $args, ?ActionHook $action_hook = null ) {
 		$this->args        = $args;
 		$this->action_hook = $action_hook ?? new ActionHook( 'widgets_init', array( $this, 'register_sidebar' ) );
 		$this->initialize();
