@@ -1,84 +1,94 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    push:
+        branches: ['main']
+    pull_request:
+        branches: ['main']
 
 jobs:
-  lint-php:
-    name: PHP and WPCS Lint
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: none
+    lint-php:
+        name: PHP and WPCS Lint
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            issues: none
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.3
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+            - name: Get Composer Cache Directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
-      - name: Cache Composer Dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+            - name: Cache Composer Dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-composer-
 
-      - name: Install Composer Packages
-        run: composer install --no-progress
+            - name: Install Composer Packages
+              run: composer install --no-progress
 
-      - name: Run PHP Lint
-        run: composer run-script lint:php
+            - name: Run PHP Lint
+              run: composer run-script lint:php
 
-      - name: Run WPCS Lint
-        run: composer run-script lint:wpcs
+            - name: Run WPCS Lint
+              run: composer run-script lint:wpcs
 
-  generate-and-deploy-docs:
-    name: Generate and Deploy Documentation
-    runs-on: ubuntu-latest
-    needs: lint-php
-    permissions:
-      contents: write
-      pages: write
+    generate-and-deploy-docs:
+        name: Generate and Deploy Documentation
+        runs-on: ubuntu-latest
+        needs: lint-php
+        permissions:
+            contents: write
+            pages: write
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.3
 
-      - name: Install phpDocumentor
-        run: |
-          curl -L -o phpDocumentor.phar https://github.com/phpDocumentor/phpDocumentor/releases/latest/download/phpDocumentor.phar
+            - name: Install phpDocumentor
+              run: |
+                  curl -L -o phpDocumentor.phar https://github.com/phpDocumentor/phpDocumentor/releases/latest/download/phpDocumentor.phar
 
-      - name: Generate Documentation
-        run: php phpDocumentor.phar -d src -t docs/api
+            - name: Generate Documentation
+              run: php phpDocumentor.phar -d src -t docs/api
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+            - name: Configure Git
+              run: |
+                  git config --global user.name "github-actions"
+                  git config --global user.email "github-actions@github.com"
 
-      - name: Commit and Push Documentation
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git add docs/api
-          git commit -m "Update API documentation" || echo "No changes to commit"
-          git push origin main
+            - name: Check for Documentation Changes
+              id: check_changes
+              run: |
+                  if git diff --quiet docs/api; then
+                    echo "No changes in documentation"
+                    echo "changed=false" >> $GITHUB_ENV
+                  else
+                    echo "Documentation has changed"
+                    echo "changed=true" >> $GITHUB_ENV
+                  fi
+
+            - name: Commit and Push Documentation
+              if: steps.check_changes.outputs.changed == 'true'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  git add docs/api
+                  git commit -m "Update API documentation"
+                  git push origin main

@@ -1,57 +1,5 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Coding Standards for Aquila Features">
-
-	<rule ref="WordPress-Core">
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
-		<exclude name="Generic.Commenting.DocComment.MissingShort" />
-		<exclude name="WordPress.PHP.DisallowShortTernary" />
-        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
-        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
-	</rule>
-
-	<rule ref="WordPress-Docs">
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
-	
-	<rule ref="WordPress-Extra" />
-
-	<rule ref="WordPress.WP.I18n">
-		<properties>
-			<property name="text_domain" type="array">
-				<element value="wpblueprint"/>
-				<element value="default"/>
-			</property>
-		</properties>
-	</rule>
-
-	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
-		<exclude-pattern>tests/*</exclude-pattern>
-		<exclude-pattern>src/*</exclude-pattern>
-	</rule>
-
-	<rule ref="WordPress.WP.GlobalVariablesOverride.Prohibited">
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
-	
-	<rule ref="WordPress.WP.AlternativeFunctions">
-		<exclude-pattern>bin/*</exclude-pattern>
-	</rule>
-	
-	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
-		<exclude-pattern>src/*</exclude-pattern>
-	</rule>
-
-	<!-- Enforce PascalCase file names in src/ only. -->
-	<rule ref="Squiz.Classes.ClassFileName">
-		<include-pattern>src/*</include-pattern>
-	</rule>
-
-	<!-- Allow NotHyphenatedLowercase for TestCase class -->
-	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
-		<exclude-pattern>tests/php/TestCase.php</exclude-pattern>
-		<exclude-pattern>tests/php/DataProvider.php</exclude-pattern>
-	</rule>
-
 	<!-- Limit max. consecutive blank lines to 1 instead of 2. -->
 	<rule ref="Squiz.WhiteSpace.FunctionSpacing">
 		<properties>
