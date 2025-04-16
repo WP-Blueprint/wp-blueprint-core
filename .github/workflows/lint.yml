@@ -78,14 +78,14 @@ jobs:
               run: |
                   if git diff --quiet docs/api; then
                     echo "No changes in documentation"
-                    echo "changed=false" >> "$GITHUB_OUTPUT"
+                    echo "changed=false" >> $GITHUB_ENV
                   else
                     echo "Documentation has changed"
-                    echo "changed=true" >> "$GITHUB_OUTPUT"
+                    echo "changed=true" >> $GITHUB_ENV
                   fi
 
             - name: Commit and Push Documentation
-              if: ${{ steps.check_changes.outputs.changed == 'true' }}
+              if: steps.check_changes.outputs.changed == 'true'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
