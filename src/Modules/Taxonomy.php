@@ -76,7 +76,7 @@ class Taxonomy {
 	 *                                  See register_taxonomy() for information on accepted arguments.
 	 * @param ActionHook   $action_hook Optional. ActionHook object for the register_taxonomy method.
 	 */
-	public function __construct( string $taxonomy, $object_type, $args, ActionHook $action_hook = null ) {
+	public function __construct( string $taxonomy, $object_type, $args, ?ActionHook $action_hook = null ) {
 		$this->taxonomy    = $taxonomy;
 		$this->object_type = $object_type;
 		$this->args        = $args;

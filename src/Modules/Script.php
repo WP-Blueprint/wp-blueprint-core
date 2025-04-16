@@ -48,7 +48,7 @@ class Script extends Asset {
 	 * @param ActionHook   $action_hook_enqueue  Optional. ActionHook object for the wp_enqueue_scripts method. Default 'wp_enqueue_scripts'.
 	 * @param ActionHook   $action_hook_register Optional. ActionHook object for the wp_register_script method. Default 'wp_enqueue_scripts'.
 	 */
-	public function __construct( string $handle, string $src, $deps = array(), $ver = false, $args = array(), bool $register_only = false, ActionHook $action_hook_enqueue = null, ActionHook $action_hook_register = null ) {
+	public function __construct( string $handle, string $src, $deps = array(), $ver = false, $args = array(), bool $register_only = false, ?ActionHook $action_hook_enqueue = null, ?ActionHook $action_hook_register = null ) {
 		$this->handle               = $handle;
 		$this->src                  = $src;
 		$this->deps                 = $deps;

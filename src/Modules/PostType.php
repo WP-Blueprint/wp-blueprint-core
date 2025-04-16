@@ -61,7 +61,7 @@ class PostType {
 	 * @param array      $args        Array or query string of arguments for registering a post type.
 	 * @param ActionHook $action_hook Optional. ActionHook instance. Default 'init'.
 	 */
-	public function __construct( string $post_type, $args, ActionHook $action_hook = null ) {
+	public function __construct( string $post_type, $args, ?ActionHook $action_hook = null ) {
 		$this->post_type   = $post_type;
 		$this->args        = $args;
 		$this->action_hook = $action_hook ?? new ActionHook( 'init', array( $this, 'register_post_type' ) );

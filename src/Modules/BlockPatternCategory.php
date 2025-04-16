@@ -61,7 +61,7 @@ class BlockPatternCategory {
 	 * @param array      $category_properties Block pattern category properties.
 	 * @param ActionHook $action_hook         Optional. ActionHook instance. Default 'init'.
 	 */
-	public function __construct( string $category_name, $category_properties, ActionHook $action_hook = null ) {
+	public function __construct( string $category_name, $category_properties, ?ActionHook $action_hook = null ) {
 		$this->category_name       = $category_name;
 		$this->category_properties = $category_properties;
 		$this->action_hook         = $action_hook ?? new ActionHook( 'init', array( $this, 'register_block_pattern_category' ) );

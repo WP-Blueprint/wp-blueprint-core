@@ -129,7 +129,7 @@ class MetaBox {
 	 * @param ActionHook    $action_hook_add Optional. ActionHook instance for the add_meta_box method. Default 'add_meta_boxes'.
 	 * @param ActionHook    $action_hook_save Optional. ActionHook instance for the save_post method. Default 'save_post'.
 	 */
-	public function __construct( string $id, string $title, $callback = null, $screen = null, string $context = 'advanced', string $priority = 'default', $callback_args = null, ActionHook $action_hook_add = null, ActionHook $action_hook_save = null ) {
+	public function __construct( string $id, string $title, $callback = null, $screen = null, string $context = 'advanced', string $priority = 'default', $callback_args = null, ?ActionHook $action_hook_add = null, ?ActionHook $action_hook_save = null ) {
 		$this->id               = $id;
 		$this->title            = $title;
 		$this->callback         = $callback ?? [ $this, 'render_post_meta_box' ];
